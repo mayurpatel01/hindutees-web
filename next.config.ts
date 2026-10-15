@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  cacheComponents: false,  // incompatible with route segment `revalidate`
-  partialPrefetching: true,
+  cacheComponents: false,
+  partialPrefetching: false,
   images: {
     remotePatterns: [
       {
