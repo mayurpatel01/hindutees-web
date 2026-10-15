@@ -1,10 +1,10 @@
 import { createClient } from '@/lib/supabase/server'
-import type { Design } from '@/types'
+import type { Asset } from '@/types'
 
-export async function getFeaturedDesigns(limit = 8): Promise<Design[]> {
+export async function getFeaturedDesigns(limit = 8): Promise<Asset[]> {
   const supabase = await createClient()
   const { data, error } = await supabase
-    .from('designs')
+    .from('assets')
     .select('*')
     .eq('gelato_status', 'active')
     .order('created_at', { ascending: false })
@@ -14,39 +14,39 @@ export async function getFeaturedDesigns(limit = 8): Promise<Design[]> {
   return data ?? []
 }
 
-export async function getDesignBySlug(slug: string): Promise<Design | null> {
+export async function getAssetBySlug(slug: string): Promise<Asset | null> {
   const supabase = await createClient()
   const { data, error } = await supabase
-    .from('designs')
+    .from('assets')
     .select('*')
     .eq('slug', slug)
     .eq('gelato_status', 'active')
     .single()
 
-  if (error) { console.error('getDesignBySlug:', error); return null }
+  if (error) { console.error('getAssetBySlug:', error); return null }
   return data
 }
 
-export async function getRelatedByDeity(deity: string, excludeId: number, limit = 4): Promise<Design[]> {
+export async function getRelatedByGod(god: string, excludeId: string, limit = 4): Promise<Asset[]> {
   const supabase = await createClient()
   const { data, error } = await supabase
-    .from('designs')
+    .from('assets')
     .select('*')
-    .eq('deity', deity)
+    .eq('god', god)
     .eq('gelato_status', 'active')
     .neq('id', excludeId)
     .limit(limit)
 
-  if (error) { console.error('getRelatedByDeity:', error); return [] }
+  if (error) { console.error('getRelatedByGod:', error); return [] }
   return data ?? []
 }
 
-export async function getRelatedByCountry(country: string, excludeId: number, limit = 4): Promise<Design[]> {
+export async function getRelatedByCountry(country: string, excludeId: string, limit = 4): Promise<Asset[]> {
   const supabase = await createClient()
   const { data, error } = await supabase
-    .from('designs')
+    .from('assets')
     .select('*')
-    .eq('country_primary', country)
+    .eq('country', country)
     .eq('gelato_status', 'active')
     .neq('id', excludeId)
     .limit(limit)
@@ -55,14 +55,14 @@ export async function getRelatedByCountry(country: string, excludeId: number, li
   return data ?? []
 }
 
-export async function getAllActiveDesigns(): Promise<Design[]> {
+export async function getAllActiveAssets(): Promise<Asset[]> {
   const supabase = await createClient()
   const { data, error } = await supabase
-    .from('designs')
+    .from('assets')
     .select('*')
     .eq('gelato_status', 'active')
-    .order('deity', { ascending: true })
+    .order('god', { ascending: true })
 
-  if (error) { console.error('getAllActiveDesigns:', error); return [] }
+  if (error) { console.error('getAllActiveAssets:', error); return [] }
   return data ?? []
 }

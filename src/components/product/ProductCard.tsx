@@ -1,25 +1,21 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Design } from '@/types'
+import type { Asset } from '@/types'
 
-type Props = {
-  design: Design
+type Props = { asset: Asset }
+
+function formatTitle(asset: Asset) {
+  const deity = asset.god
+    ? asset.god.charAt(0).toUpperCase() + asset.god.slice(1).toLowerCase()
+    : ''
+  const country = asset.country ?? ''
+  return deity && country ? `${deity} — ${country}` : asset.name
 }
 
-function formatName(design: Design) {
-  // "GANESH_USA-IND_FULL_v1" → "Ganesh — USA × India"
-  const parts = design.name?.split('_') ?? []
-  const deity = parts[0] ? parts[0].charAt(0) + parts[0].slice(1).toLowerCase() : ''
-  const countries = parts[1] ?? ''
-  const [c1, c2] = countries.split('-')
-  if (!c1) return design.name
-  return `${deity} — ${c1}${c2 ? ` × ${c2}` : ''}`
-}
-
-export default function ProductCard({ design }: Props) {
-  const displayImage = design.mockup_female_url ?? design.mockup_male_url ?? design.image_url
-  const slug = design.slug ?? String(design.id)
-  const title = formatName(design)
+export default function ProductCard({ asset }: Props) {
+  const displayImage = asset.mockup_female_url ?? asset.mockup_male_url ?? asset.file_url
+  const slug = asset.slug ?? asset.id
+  const title = formatTitle(asset)
 
   return (
     <Link href={`/products/${slug}`} className="group block">
@@ -43,16 +39,13 @@ export default function ProductCard({ design }: Props) {
             </svg>
           </div>
         )}
-
-        {/* Badge */}
-        {design.gelato_status === 'active' && (
+        {asset.gelato_status === 'active' && (
           <span className="absolute top-2 left-2 text-xs font-medium px-2 py-0.5 rounded-full"
             style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-canvas)' }}>
             In Stock
           </span>
         )}
       </div>
-
       <p className="font-display text-sm font-medium leading-snug"
         style={{ color: 'var(--color-text-light)' }}>
         {title}
