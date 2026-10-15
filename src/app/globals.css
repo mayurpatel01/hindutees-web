@@ -1,26 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #F5A100;
+  --color-secondary: #9B1B3A;
+  --color-canvas: #08071A;
+  --color-surface: #110F2A;
+  --color-text-light: #F0EBE0;
+  --color-text-muted: #9891B0;
+  --color-border: rgba(240, 235, 224, 0.1);
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Inter', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-text-light);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-canvas);
+  min-height: 100vh;
+}
+
+/* Typography */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Marigold glow effect */
+@keyframes marigold-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.05); }
+}
+
+.marigold-glow {
+  animation: marigold-pulse 4s ease-in-out infinite;
+}
+
+/* Fade in on load */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 0.6s ease-out 0.15s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marigold-glow,
+  .animate-fade-up,
+  .animate-fade-up-delay,
+  .animate-fade-up-delay-2 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
