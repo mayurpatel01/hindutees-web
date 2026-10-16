@@ -3,6 +3,7 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getAssetBySlug, getRelatedByGod, getRelatedByCountry } from '@/lib/designs'
 import ProductCard from '@/components/product/ProductCard'
+import AddToCartButton from '@/components/cart/AddToCartButton'
 import { brand } from '@/config/brand'
 
 export const revalidate = 3600
@@ -45,6 +46,8 @@ export default async function ProductPage({ params }: Props) {
     getRelatedByCountry(asset.country, asset.id, 4),
   ])
 
+  const displayTitle = asset.seo_title ?? title
+
   return (
     <div className="pt-24 pb-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -77,10 +80,10 @@ export default async function ProductPage({ params }: Props) {
 
             <h1 className="font-display text-3xl md:text-4xl font-semibold mb-4 leading-tight"
               style={{ color: 'var(--color-text-heading)' }}>
-              {asset.seo_title ?? title}
+              {displayTitle}
             </h1>
 
-            <p className="text-2xl font-semibold mb-8" style={{ color: 'var(--color-text-dark)' }}>
+            <p className="text-2xl font-semibold mb-6" style={{ color: 'var(--color-text-dark)' }}>
               From $29.99
             </p>
 
@@ -88,16 +91,21 @@ export default async function ProductPage({ params }: Props) {
               {asset.seo_description ?? `A celebration of dual identity — ${asset.god} rendered in the colors and symbolism of ${asset.country}. Premium unisex t-shirt, printed fresh when you order.`}
             </p>
 
-            {asset.gelato_product_url ? (
-              <a href={asset.gelato_product_url} target="_blank" rel="noopener noreferrer"
-                className="block w-full py-4 rounded-full font-medium text-center text-sm transition-all duration-200 hover:opacity-90 mb-4"
-                style={{ backgroundColor: 'var(--color-emerald)', color: 'var(--color-text-light)' }}>
-                Buy Now
-              </a>
+            {/* Add to cart — only when the product is live in Gelato */}
+            {asset.gelato_product_id ? (
+              <AddToCartButton
+                assetId={asset.id}
+                slug={slug}
+                title={displayTitle}
+                image={primaryImage ?? null}
+                price={29.99}
+                gelatoProductId={asset.gelato_product_id}
+                fileUrl={asset.file_url ?? ''}
+              />
             ) : (
               <button disabled
                 className="block w-full py-4 rounded-full font-medium text-center text-sm mb-4 opacity-40 cursor-not-allowed"
-                style={{ backgroundColor: 'var(--color-emerald)', color: 'var(--color-text-light)' }}>
+                style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-canvas)' }}>
                 Coming Soon
               </button>
             )}
