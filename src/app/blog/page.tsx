@@ -8,8 +8,8 @@ export const metadata: Metadata = {
     'Stories, culture, and diaspora identity from the HinduTee community. Exploring Hindu heritage, festivals, and what it means to carry two flags.',
 }
 
-export default function BlogPage() {
-  const posts = getAllPosts()
+export default async function BlogPage() {
+  const posts = await getAllPosts()
   const [hero, ...rest] = posts
 
   return (

@@ -8,7 +8,8 @@ import ProductCard from '@/components/product/ProductCard'
 type Props = { params: Promise<{ slug: string }> }
 
 export async function generateStaticParams() {
-  return getAllPosts().map(p => ({ slug: p.slug }))
+  const posts = await getAllPosts()
+  return posts.map(p => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
