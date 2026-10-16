@@ -21,6 +21,7 @@ async function getPostsFromSupabase(): Promise<BlogPost[]> {
     const { data, error } = await supabase
       .from('blog_posts')
       .select('slug, title, excerpt, cover_image, published_at, reading_minutes, category, body_md')
+      .eq('published', true)
       .order('published_at', { ascending: false })
 
     if (error || !data?.length) return []
