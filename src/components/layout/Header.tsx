@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { brand } from '@/config/brand'
 import { useState } from 'react'
 
@@ -15,9 +16,15 @@ export default function Header() {
       }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="font-display text-xl font-semibold tracking-wide"
-          style={{ color: 'var(--color-text-heading)' }}>
-          {brand.name}
+        <Link href="/" className="flex items-center" aria-label={brand.name}>
+          <Image
+            src="/logo.png"
+            alt={brand.name}
+            width={120}
+            height={68}
+            priority
+            className="h-9 w-auto"
+          />
         </Link>
 
         {/* Desktop nav */}

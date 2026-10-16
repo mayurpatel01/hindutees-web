@@ -8,11 +8,16 @@ export const metadata: Metadata = {
   title: brand.seo.title,
   description: brand.seo.description,
   metadataBase: new URL(`https://${brand.domain}`),
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
   openGraph: {
     title: brand.seo.title,
     description: brand.seo.description,
     siteName: brand.name,
     type: 'website',
+    images: ['/logo.png'],
   },
   twitter: {
     card: 'summary_large_image',
