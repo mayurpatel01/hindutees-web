@@ -35,29 +35,30 @@ export type BrandConfig = {
 export const hinduteesBrand: BrandConfig = {
   id: 'hindutees',
   name: 'HinduTee',
-  tagline: 'Wear Your Devotion',
+  tagline: 'Wear Your Dharma',
   domain: 'hindutee.com',
   niche: 'hindu-diaspora',
   description: 'Premium deity apparel celebrating Hindu culture and diaspora pride.',
   colors: {
-    primary: '#F5A100',    // marigold
-    secondary: '#9B1B3A',  // kumkum red
-    canvas: '#08071A',     // deep indigo-black
-    surface: '#110F2A',    // slightly lighter indigo
-    textLight: '#F0EBE0',  // warm parchment
-    textDark: '#1A1526',   // deep text on light
+    primary: '#C69C46',    // Antique Gold
+    secondary: '#D97932',  // Muted Saffron
+    canvas: '#F7F3E9',     // Warm Ivory
+    surface: '#EDE8DB',    // Slightly deeper ivory for cards
+    textLight: '#F7F3E9',  // ivory — used on dark/colored backgrounds
+    textDark: '#202B27',   // Deep Charcoal — primary body text on ivory
   },
   fonts: {
     display: 'Cinzel',
     body: 'Inter',
   },
   seo: {
-    title: 'HinduTee — Wear Your Devotion',
-    description: 'Premium Hindu deity apparel celebrating diaspora pride. Ganesh, Lakshmi, Krishna and more, fused with the flags of your two homelands.',
+    title: 'HinduTee — Wear Your Dharma',
+    description: 'Premium Hindu deity apparel celebrating diaspora pride. Ganesh, Lakshmi, Krishna and more, fused with the colors and spirit of your two homelands.',
   },
   nav: {
     links: [
       { label: 'Shop', href: '/shop' },
+      { label: 'Blog', href: '/blog' },
       { label: 'About', href: '/about' },
     ],
   },

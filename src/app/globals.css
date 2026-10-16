@@ -2,22 +2,30 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #F5A100;
-  --color-secondary: #9B1B3A;
-  --color-canvas: #08071A;
-  --color-surface: #110F2A;
-  --color-text-light: #F0EBE0;
-  --color-text-muted: #9891B0;
-  --color-border: rgba(240, 235, 224, 0.1);
+  /* Brand palette — Warm Ivory / Emerald / Antique Gold */
+  --color-primary: #C69C46;        /* Antique Gold — CTA buttons, badges, accents */
+  --color-primary-dark: #A07C30;   /* Gold hover state */
+  --color-secondary: #D97932;      /* Muted Saffron — secondary accents */
+  --color-emerald: #145C43;        /* Deep Emerald — brand text, nav logo */
+  --color-canvas: #F7F3E9;         /* Warm Ivory — page background */
+  --color-surface: #EDE8DB;        /* Slightly deeper ivory — cards, sections */
+  --color-surface-2: #E3DDD0;      /* Deeper still — hover states, dividers */
+  --color-text-dark: #202B27;      /* Deep Charcoal — primary body text */
+  --color-text-heading: #145C43;   /* Deep Emerald — headings, brand name */
+  --color-text-muted: #6B7B74;     /* Muted green-grey — secondary copy */
+  --color-text-light: #F7F3E9;     /* Ivory — text on colored/dark backgrounds */
+  --color-border: rgba(32, 43, 39, 0.12);  /* Subtle charcoal border */
+  --color-border-strong: rgba(32, 43, 39, 0.25);
   --font-display: 'Cinzel', serif;
   --font-body: 'Inter', sans-serif;
 }
 
 html {
   background-color: var(--color-canvas);
-  color: var(--color-text-light);
+  color: var(--color-text-dark);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -30,14 +38,14 @@ body {
   font-family: var(--font-display);
 }
 
-/* Marigold glow effect */
-@keyframes marigold-pulse {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.65; transform: scale(1.05); }
+/* Gold glow — hero decorative element */
+@keyframes gold-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.06); }
 }
 
 .marigold-glow {
-  animation: marigold-pulse 4s ease-in-out infinite;
+  animation: gold-pulse 5s ease-in-out infinite;
 }
 
 /* Fade in on load */

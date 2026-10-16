@@ -9,14 +9,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b"
       style={{
-        backgroundColor: 'rgba(8, 7, 26, 0.92)',
+        backgroundColor: 'rgba(247, 243, 233, 0.92)',
         backdropFilter: 'blur(12px)',
         borderColor: 'var(--color-border)',
       }}>
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="font-display text-xl font-semibold tracking-wide"
-          style={{ color: 'var(--color-primary)' }}>
+          style={{ color: 'var(--color-text-heading)' }}>
           {brand.name}
         </Link>
 
@@ -28,7 +28,7 @@ export default function Header() {
               href={link.href}
               className="text-sm font-medium transition-colors duration-200"
               style={{ color: 'var(--color-text-muted)' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-text-light)')}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-text-dark)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-text-muted)')}
             >
               {link.label}
@@ -51,7 +51,7 @@ export default function Header() {
           className="md:hidden p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
-          style={{ color: 'var(--color-text-light)' }}
+          style={{ color: 'var(--color-text-dark)' }}
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
             {menuOpen

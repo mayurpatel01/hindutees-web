@@ -32,7 +32,7 @@ export default async function ShopPage({
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-10">
           <h1 className="font-display text-3xl md:text-4xl font-semibold mb-2"
-            style={{ color: 'var(--color-text-light)' }}>
+            style={{ color: 'var(--color-text-heading)' }}>
             All Designs
           </h1>
           <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
@@ -50,30 +50,36 @@ export default async function ShopPage({
               Clear filters
             </a>
           )}
-          {gods.map(g => (
-            <a key={g}
-              href={`/shop?god=${g}${country ? `&country=${country}` : ''}`}
-              className="text-xs px-3 py-1.5 rounded-full border transition-colors duration-200"
-              style={{
-                borderColor: god?.toLowerCase() === g.toLowerCase() ? 'var(--color-primary)' : 'var(--color-border)',
-                color: god?.toLowerCase() === g.toLowerCase() ? 'var(--color-primary)' : 'var(--color-text-muted)',
-                backgroundColor: god?.toLowerCase() === g.toLowerCase() ? 'rgba(245,161,0,0.1)' : 'transparent',
-              }}>
-              {g.charAt(0).toUpperCase() + g.slice(1).toLowerCase()}
-            </a>
-          ))}
-          {countries.map(c => (
-            <a key={c}
-              href={`/shop?country=${c}${god ? `&god=${god}` : ''}`}
-              className="text-xs px-3 py-1.5 rounded-full border transition-colors duration-200"
-              style={{
-                borderColor: country?.toLowerCase() === c.toLowerCase() ? 'var(--color-secondary)' : 'var(--color-border)',
-                color: country?.toLowerCase() === c.toLowerCase() ? 'var(--color-secondary)' : 'var(--color-text-muted)',
-                backgroundColor: country?.toLowerCase() === c.toLowerCase() ? 'rgba(155,27,58,0.1)' : 'transparent',
-              }}>
-              {c}
-            </a>
-          ))}
+          {gods.map(g => {
+            const active = god?.toLowerCase() === g.toLowerCase()
+            return (
+              <a key={g}
+                href={`/shop?god=${g}${country ? `&country=${country}` : ''}`}
+                className="text-xs px-3 py-1.5 rounded-full border transition-colors duration-200"
+                style={{
+                  borderColor: active ? 'var(--color-emerald)' : 'var(--color-border)',
+                  color: active ? 'var(--color-text-light)' : 'var(--color-text-muted)',
+                  backgroundColor: active ? 'var(--color-emerald)' : 'transparent',
+                }}>
+                {g.charAt(0).toUpperCase() + g.slice(1).toLowerCase()}
+              </a>
+            )
+          })}
+          {countries.map(c => {
+            const active = country?.toLowerCase() === c.toLowerCase()
+            return (
+              <a key={c}
+                href={`/shop?country=${c}${god ? `&god=${god}` : ''}`}
+                className="text-xs px-3 py-1.5 rounded-full border transition-colors duration-200"
+                style={{
+                  borderColor: active ? 'var(--color-primary)' : 'var(--color-border)',
+                  color: active ? 'var(--color-text-dark)' : 'var(--color-text-muted)',
+                  backgroundColor: active ? 'rgba(198,156,70,0.15)' : 'transparent',
+                }}>
+                {c}
+              </a>
+            )
+          })}
         </div>
 
         {filtered.length > 0 ? (

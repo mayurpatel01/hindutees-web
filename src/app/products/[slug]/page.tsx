@@ -76,11 +76,11 @@ export default async function ProductPage({ params }: Props) {
             </p>
 
             <h1 className="font-display text-3xl md:text-4xl font-semibold mb-4 leading-tight"
-              style={{ color: 'var(--color-text-light)' }}>
+              style={{ color: 'var(--color-text-heading)' }}>
               {asset.seo_title ?? title}
             </h1>
 
-            <p className="text-2xl font-semibold mb-8" style={{ color: 'var(--color-text-light)' }}>
+            <p className="text-2xl font-semibold mb-8" style={{ color: 'var(--color-text-dark)' }}>
               From $29.99
             </p>
 
@@ -91,13 +91,13 @@ export default async function ProductPage({ params }: Props) {
             {asset.gelato_product_url ? (
               <a href={asset.gelato_product_url} target="_blank" rel="noopener noreferrer"
                 className="block w-full py-4 rounded-full font-medium text-center text-sm transition-all duration-200 hover:opacity-90 mb-4"
-                style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-canvas)' }}>
+                style={{ backgroundColor: 'var(--color-emerald)', color: 'var(--color-text-light)' }}>
                 Buy Now
               </a>
             ) : (
               <button disabled
                 className="block w-full py-4 rounded-full font-medium text-center text-sm mb-4 opacity-40 cursor-not-allowed"
-                style={{ backgroundColor: 'var(--color-primary)', color: 'var(--color-canvas)' }}>
+                style={{ backgroundColor: 'var(--color-emerald)', color: 'var(--color-text-light)' }}>
                 Coming Soon
               </button>
             )}
@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: Props) {
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-4 text-sm">
                   <span className="w-28 shrink-0" style={{ color: 'var(--color-text-muted)' }}>{label}</span>
-                  <span style={{ color: 'var(--color-text-light)' }}>{value}</span>
+                  <span style={{ color: 'var(--color-text-dark)' }}>{value}</span>
                 </div>
               ))}
             </div>
@@ -122,7 +122,7 @@ export default async function ProductPage({ params }: Props) {
         {relatedGod.length > 0 && (
           <section className="mb-16">
             <h2 className="font-display text-xl font-semibold mb-6"
-              style={{ color: 'var(--color-text-light)' }}>
+              style={{ color: 'var(--color-text-heading)' }}>
               More {asset.god?.charAt(0).toUpperCase()}{asset.god?.slice(1).toLowerCase()} designs
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
@@ -135,7 +135,7 @@ export default async function ProductPage({ params }: Props) {
         {relatedCountry.length > 0 && (
           <section>
             <h2 className="font-display text-xl font-semibold mb-6"
-              style={{ color: 'var(--color-text-light)' }}>
+              style={{ color: 'var(--color-text-heading)' }}>
               More {asset.country} designs
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">

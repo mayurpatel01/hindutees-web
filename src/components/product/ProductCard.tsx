@@ -47,7 +47,7 @@ export default function ProductCard({ asset }: Props) {
         )}
       </div>
       <p className="font-display text-sm font-medium leading-snug"
-        style={{ color: 'var(--color-text-light)' }}>
+        style={{ color: 'var(--color-text-dark)' }}>
         {title}
       </p>
       <p className="text-sm mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
