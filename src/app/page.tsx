@@ -87,9 +87,90 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Social proof marquee */}
+      <div className="border-y overflow-hidden py-3"
+        style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}>
+        <div className="flex gap-10 animate-marquee whitespace-nowrap text-xs font-medium tracking-widest uppercase"
+          style={{ color: 'var(--color-text-muted)', fontFamily: 'var(--font-display)' }}>
+          {[
+            '🇺🇸 USA', '🇨🇦 Canada', '🇬🇧 United Kingdom', '🇦🇺 Australia',
+            '🇹🇹 Trinidad', '🇬🇾 Guyana', '🇫🇯 Fiji', '🇲🇺 Mauritius',
+            '🇮🇳 India', '✦ 130+ orders shipped', '✦ 224 designs',
+            '🇺🇸 USA', '🇨🇦 Canada', '🇬🇧 United Kingdom', '🇦🇺 Australia',
+            '🇹🇹 Trinidad', '🇬🇾 Guyana', '🇫🇯 Fiji', '🇲🇺 Mauritius',
+            '🇮🇳 India', '✦ 130+ orders shipped', '✦ 224 designs',
+          ].map((item, i) => (
+            <span key={i} className="inline-flex items-center gap-3">
+              {item}
+              <span style={{ opacity: 0.3 }}>·</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Browse by Deity */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-12">
+          <p className="text-xs font-medium tracking-[0.25em] uppercase mb-3"
+            style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
+            Find your deity
+          </p>
+          <h2 className="font-display text-3xl md:text-4xl font-semibold"
+            style={{ color: 'var(--color-text-heading)' }}>
+            Shop by Deity
+          </h2>
+        </div>
+        <div className="grid grid-cols-4 md:grid-cols-7 gap-3 md:gap-4">
+          {[
+            { name: 'Ganesh',  symbol: 'ॐ',  description: 'Remover of Obstacles', value: 'ganesh'  },
+            { name: 'Lakshmi', symbol: '₹',  description: 'Goddess of Prosperity', value: 'lakshmi' },
+            { name: 'Shiva',   symbol: '☽',  description: 'The Destroyer & Creator', value: 'shiva'   },
+            { name: 'Krishna', symbol: '♪',  description: 'Divine Love & Wisdom', value: 'krishna' },
+            { name: 'Hanuman', symbol: '⚡', description: 'Devotion & Strength', value: 'hanuman' },
+            { name: 'Durga',   symbol: '✦',  description: 'Goddess of Power', value: 'durga'   },
+            { name: 'Om',      symbol: 'ॐ',  description: 'Universal Consciousness', value: 'om'      },
+          ].map(deity => (
+            <Link
+              key={deity.value}
+              href={`/shop?god=${deity.value}`}
+              className="group flex flex-col items-center gap-2 p-3 md:p-4 rounded-2xl border text-center transition-all duration-200 hover:shadow-md"
+              style={{
+                borderColor: 'var(--color-border)',
+                backgroundColor: 'var(--color-surface)',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-primary)'
+                ;(e.currentTarget as HTMLElement).style.backgroundColor = 'var(--color-surface-2)'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-border)'
+                ;(e.currentTarget as HTMLElement).style.backgroundColor = 'var(--color-surface)'
+              }}
+            >
+              {/* Symbol circle */}
+              <div
+                className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center text-xl md:text-2xl transition-transform duration-200 group-hover:scale-110"
+                style={{
+                  backgroundColor: 'var(--color-canvas)',
+                  border: '1px solid var(--color-border)',
+                  fontFamily: 'serif',
+                  color: 'var(--color-primary)',
+                }}
+              >
+                {deity.symbol}
+              </div>
+              <span className="text-xs font-semibold leading-tight"
+                style={{ color: 'var(--color-text-heading)' }}>
+                {deity.name}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Featured designs */}
       {featured.length > 0 && (
-        <section className="max-w-6xl mx-auto px-6 py-20">
+        <section className="max-w-6xl mx-auto px-6 pb-20">
           <div className="flex items-end justify-between mb-10">
             <h2 className="font-display text-2xl md:text-3xl font-semibold"
               style={{ color: 'var(--color-text-heading)' }}>
@@ -107,6 +188,59 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* Browse by Country */}
+      <section className="border-t py-16" style={{ borderColor: 'var(--color-border)' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-10">
+            <div className="shrink-0">
+              <p className="text-xs font-medium tracking-[0.25em] uppercase mb-1"
+                style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
+                Diaspora
+              </p>
+              <h2 className="font-display text-xl font-semibold"
+                style={{ color: 'var(--color-text-heading)' }}>
+                Your country
+              </h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {[
+                { flag: '🇮🇳', label: 'India',     value: 'india'     },
+                { flag: '🇺🇸', label: 'USA',       value: 'usa'       },
+                { flag: '🇨🇦', label: 'Canada',    value: 'canada'    },
+                { flag: '🇬🇧', label: 'UK',        value: 'uk'        },
+                { flag: '🇦🇺', label: 'Australia', value: 'australia' },
+                { flag: '🇹🇹', label: 'Trinidad',  value: 'trinidad'  },
+                { flag: '🇬🇾', label: 'Guyana',    value: 'guyana'    },
+                { flag: '🇫🇯', label: 'Fiji',      value: 'fiji'      },
+                { flag: '🇲🇺', label: 'Mauritius', value: 'mauritius' },
+              ].map(c => (
+                <Link
+                  key={c.value}
+                  href={`/shop?country=${c.value}`}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 hover:shadow-sm"
+                  style={{
+                    borderColor: 'var(--color-border)',
+                    color: 'var(--color-text-dark)',
+                    backgroundColor: 'var(--color-surface)',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-primary)'
+                    ;(e.currentTarget as HTMLElement).style.color = 'var(--color-primary)'
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-border)'
+                    ;(e.currentTarget as HTMLElement).style.color = 'var(--color-text-dark)'
+                  }}
+                >
+                  <span>{c.flag}</span>
+                  {c.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Brand values */}
       <section className="border-t border-b py-20"
