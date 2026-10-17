@@ -1,12 +1,18 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { brand } from '@/config/brand'
 import { getFeaturedDesigns } from '@/lib/designs'
+import { getAllPosts, formatDate } from '@/lib/blog'
 import ProductCard from '@/components/product/ProductCard'
 
 export const revalidate = 3600
 
 export default async function HomePage() {
-  const featured = await getFeaturedDesigns(8)
+  const [featured, posts] = await Promise.all([
+    getFeaturedDesigns(8),
+    getAllPosts(),
+  ])
+  const blogPreviews = posts.slice(0, 3)
 
   return (
     <>
@@ -24,6 +30,24 @@ export default async function HomePage() {
             transform: 'translate(-50%, -50%)',
           }}
         />
+        {/* Decorative Om symbol — large, ghosted behind text */}
+        <div
+          className="absolute select-none pointer-events-none"
+          aria-hidden="true"
+          style={{
+            fontSize: 'clamp(220px, 38vw, 480px)',
+            fontFamily: 'serif',
+            color: 'var(--color-primary)',
+            opacity: 0.04,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -52%)',
+            lineHeight: 1,
+            userSelect: 'none',
+          }}
+        >
+          ॐ
+        </div>
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <p className="text-xs font-medium tracking-[0.25em] mb-6 animate-fade-up uppercase"
             style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
@@ -114,6 +138,62 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* From the blog */}
+      {blogPreviews.length > 0 && (
+        <section className="max-w-6xl mx-auto px-6 py-20">
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <p className="text-xs font-medium tracking-[0.2em] uppercase mb-2"
+                style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
+                Stories
+              </p>
+              <h2 className="font-display text-2xl md:text-3xl font-semibold"
+                style={{ color: 'var(--color-text-heading)' }}>
+                From the Community
+              </h2>
+            </div>
+            <Link href="/blog" className="text-sm font-medium"
+              style={{ color: 'var(--color-primary)' }}>
+              All stories →
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {blogPreviews.map(post => (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
+                <div className="rounded-xl overflow-hidden mb-4 relative aspect-video"
+                  style={{ backgroundColor: 'var(--color-surface)' }}>
+                  {post.coverImage ? (
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--color-surface-2)' }}>
+                      <span className="font-display text-3xl" style={{ color: 'var(--color-primary)', opacity: 0.35 }}>✦</span>
+                    </div>
+                  )}
+                </div>
+                <span className="text-xs font-medium tracking-widest uppercase mb-1 block"
+                  style={{ color: 'var(--color-primary)' }}>
+                  {post.category}
+                </span>
+                <h3 className="font-display text-base font-semibold mb-1 group-hover:opacity-75 transition-opacity leading-snug"
+                  style={{ color: 'var(--color-text-heading)' }}>
+                  {post.title}
+                </h3>
+                <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                  {formatDate(post.publishedAt)} · {post.readingMinutes} min read
+                </p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* CTA strip */}
       <section className="py-20" style={{ backgroundColor: 'var(--color-emerald)' }}>

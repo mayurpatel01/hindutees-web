@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { getPostBySlug, getAllPosts, formatDate } from '@/lib/blog'
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.excerpt,
       type: 'article',
       publishedTime: post.publishedAt,
+      ...(post.coverImage ? { images: [{ url: post.coverImage, width: 1200, height: 630 }] } : {}),
     },
   }
 }
@@ -64,12 +66,23 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Cover image */}
       <div className="max-w-3xl mx-auto px-6 mb-14">
         <div
-          className="rounded-2xl aspect-video flex items-center justify-center"
+          className="rounded-2xl aspect-video relative overflow-hidden"
           style={{ backgroundColor: 'var(--color-surface-2)' }}
         >
-          <span className="font-display text-8xl" style={{ color: 'var(--color-primary)', opacity: 0.25 }}>
-            ✦
-          </span>
+          {post.coverImage ? (
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 768px"
+              priority
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="font-display text-8xl" style={{ color: 'var(--color-primary)', opacity: 0.25 }}>✦</span>
+            </div>
+          )}
         </div>
       </div>
 

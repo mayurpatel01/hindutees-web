@@ -30,6 +30,7 @@ export default function Header() {
               height={68}
               priority
               className="h-14 w-auto"
+              style={{ filter: 'var(--logo-filter)' }}
             />
           </Link>
 

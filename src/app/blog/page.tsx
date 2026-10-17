@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getAllPosts, formatDate } from '@/lib/blog'
 
@@ -38,14 +39,24 @@ export default async function BlogPage() {
               className="rounded-2xl overflow-hidden flex flex-col md:flex-row"
               style={{ backgroundColor: 'var(--color-surface)' }}
             >
-              {/* Cover image placeholder */}
+              {/* Cover image */}
               <div
-                className="md:w-1/2 aspect-video md:aspect-auto flex items-center justify-center"
+                className="md:w-1/2 aspect-video md:aspect-auto relative overflow-hidden"
                 style={{ backgroundColor: 'var(--color-surface-2)', minHeight: '280px' }}
               >
-                <span className="font-display text-6xl" style={{ color: 'var(--color-primary)', opacity: 0.4 }}>
-                  ✦
-                </span>
+                {hero.coverImage ? (
+                  <Image
+                    src={hero.coverImage}
+                    alt={hero.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-display text-6xl" style={{ color: 'var(--color-primary)', opacity: 0.4 }}>✦</span>
+                  </div>
+                )}
               </div>
 
               {/* Content */}
@@ -76,17 +87,22 @@ export default async function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {rest.map(post => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-                <div className="rounded-xl overflow-hidden mb-4"
+                <div className="rounded-xl overflow-hidden mb-4 relative aspect-video"
                   style={{ backgroundColor: 'var(--color-surface)' }}>
-                  {/* Cover image placeholder */}
-                  <div
-                    className="aspect-video flex items-center justify-center"
-                    style={{ backgroundColor: 'var(--color-surface-2)' }}
-                  >
-                    <span className="font-display text-4xl" style={{ color: 'var(--color-primary)', opacity: 0.4 }}>
-                      ✦
-                    </span>
-                  </div>
+                  {post.coverImage ? (
+                    <Image
+                      src={post.coverImage}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center"
+                      style={{ backgroundColor: 'var(--color-surface-2)' }}>
+                      <span className="font-display text-4xl" style={{ color: 'var(--color-primary)', opacity: 0.4 }}>✦</span>
+                    </div>
+                  )}
                 </div>
                 <span className="text-xs font-medium tracking-widest uppercase mb-2 block"
                   style={{ color: 'var(--color-primary)' }}>

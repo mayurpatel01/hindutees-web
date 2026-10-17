@@ -51,7 +51,7 @@ const STATIC_POSTS: BlogPost[] = [
     title: 'Why Ganesh Travels Everywhere We Do',
     excerpt:
       "The remover of obstacles follows the Hindu diaspora across oceans and generations. Here's what his image means when you're far from home.",
-    coverImage: null,
+    coverImage: 'https://images.unsplash.com/photo-1612431264326-c8b1dc84e6f8?w=1200&q=80&fit=crop',
     publishedAt: '2026-10-01',
     readingMinutes: 4,
     category: 'Culture',
@@ -77,7 +77,7 @@ const STATIC_POSTS: BlogPost[] = [
     title: 'Diwali Across the Diaspora: One Festival, Ten Countries',
     excerpt:
       'Diwali looks different in Trinidad than it does in Fiji, and different again in Leicester or Queens. A look at how the festival of lights travels.',
-    coverImage: null,
+    coverImage: 'https://images.unsplash.com/photo-1574769461037-9f8df9c2e2b1?w=1200&q=80&fit=crop',
     publishedAt: '2026-10-08',
     readingMinutes: 5,
     category: 'Festival',
@@ -102,7 +102,7 @@ const STATIC_POSTS: BlogPost[] = [
     title: 'Two Flags, One Identity: What Your Combination Says',
     excerpt:
       "India–USA. Guyana–Canada. Fiji–Australia. Each diaspora combination carries a distinct migration story. Here's what yours might be.",
-    coverImage: null,
+    coverImage: 'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=1200&q=80&fit=crop',
     publishedAt: '2026-10-14',
     readingMinutes: 4,
     category: 'Identity',
