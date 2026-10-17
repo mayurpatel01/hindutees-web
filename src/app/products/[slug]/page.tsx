@@ -120,9 +120,7 @@ export default async function ProductPage({ params }: Props) {
             <div className="border-t pt-6 mt-6 space-y-3" style={{ borderColor: 'var(--color-border)' }}>
               {[
                 ['Material', '100% ring-spun cotton, 180 GSM'],
-                ['Print', 'Direct-to-film (DTF), vibrant & durable'],
-                ['Fulfillment', 'Printed locally in your region by Gelato'],
-                ['Ships to', 'USA, Canada, UK, Australia, India + more'],
+                ['Ships to', 'USA, Canada, UK, Australia, India + 200 countries'],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-4 text-sm">
                   <span className="w-28 shrink-0" style={{ color: 'var(--color-text-muted)' }}>{label}</span>
