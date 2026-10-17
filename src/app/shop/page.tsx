@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getAllActiveAssets } from '@/lib/designs'
 import ProductCard from '@/components/product/ProductCard'
 import { brand } from '@/config/brand'
+import { countryDisplayName } from '@/lib/countries'
 
 export const revalidate = 3600
 
@@ -76,7 +77,7 @@ export default async function ShopPage({
                   color: active ? 'var(--color-text-dark)' : 'var(--color-text-muted)',
                   backgroundColor: active ? 'rgba(198,156,70,0.15)' : 'transparent',
                 }}>
-                {c}
+                {countryDisplayName(c)}
               </a>
             )
           })}

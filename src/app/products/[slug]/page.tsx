@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
 import type { Metadata } from 'next'
 import { getAssetBySlug, getRelatedByGod, getRelatedByCountry } from '@/lib/designs'
 import ProductCard from '@/components/product/ProductCard'
 import AddToCartButton from '@/components/cart/AddToCartButton'
 import ShareButton from '@/components/product/ShareButton'
+import ImageCarousel from '@/components/product/ImageCarousel'
+import SizeChart from '@/components/product/SizeChart'
 import { brand } from '@/config/brand'
+import { countryDisplayName } from '@/lib/countries'
 
 export const revalidate = 3600
 
@@ -15,7 +17,8 @@ function formatTitle(asset: { god: string; country: string }) {
   const deity = asset.god
     ? asset.god.charAt(0).toUpperCase() + asset.god.slice(1).toLowerCase()
     : ''
-  return deity && asset.country ? `${deity} — ${asset.country}` : deity
+  const country = countryDisplayName(asset.country)
+  return deity && country ? `${deity} — ${country}` : deity
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -41,7 +44,15 @@ export default async function ProductPage({ params }: Props) {
 
   const title = formatTitle(asset)
   const primaryImage = asset.mockup_female_url ?? asset.mockup_male_url ?? asset.file_url
-  const secondaryImage = asset.mockup_male_url ?? asset.file_url
+
+  // Build carousel images: female first, then male (if different), then raw design
+  const carouselImages: { src: string; alt: string }[] = []
+  if (asset.mockup_female_url)
+    carouselImages.push({ src: asset.mockup_female_url, alt: `${title} — women's lifestyle` })
+  if (asset.mockup_male_url && asset.mockup_male_url !== asset.mockup_female_url)
+    carouselImages.push({ src: asset.mockup_male_url, alt: `${title} — men's lifestyle` })
+  if (asset.file_url && carouselImages.length === 0)
+    carouselImages.push({ src: asset.file_url, alt: title })
 
   const [relatedGod, relatedCountry] = await Promise.all([
     getRelatedByGod(asset.god, asset.id, 4),
@@ -55,29 +66,14 @@ export default async function ProductPage({ params }: Props) {
       <div className="max-w-6xl mx-auto px-6">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
-          {/* Images */}
-          <div className="flex flex-col gap-4">
-            <div className="relative aspect-square rounded-xl overflow-hidden"
-              style={{ backgroundColor: 'var(--color-surface)' }}>
-              {primaryImage && (
-                <Image src={primaryImage} alt={title} fill priority
-                  sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-              )}
-            </div>
-            {secondaryImage && secondaryImage !== primaryImage && (
-              <div className="relative aspect-square rounded-xl overflow-hidden"
-                style={{ backgroundColor: 'var(--color-surface)' }}>
-                <Image src={secondaryImage} alt={`${title} — alternate view`} fill
-                  sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-              </div>
-            )}
-          </div>
+          {/* Image carousel */}
+          <ImageCarousel images={carouselImages} priority />
 
           {/* Info */}
           <div className="lg:sticky lg:top-24 lg:self-start">
             <p className="text-xs font-medium tracking-widest mb-3"
               style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
-              {asset.god?.toUpperCase()} — {asset.country}
+              {asset.god?.toUpperCase()} — {countryDisplayName(asset.country)}
             </p>
 
             <h1 className="font-display text-3xl md:text-4xl font-semibold mb-4 leading-tight"
@@ -97,7 +93,7 @@ export default async function ProductPage({ params }: Props) {
             </div>
 
             <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--color-text-muted)' }}>
-              {asset.seo_description ?? `A celebration of dual identity — ${asset.god} rendered in the colors and symbolism of ${asset.country}. Premium unisex t-shirt, printed fresh when you order.`}
+              {asset.seo_description ?? `A celebration of dual identity — ${asset.god} rendered in the colors and symbolism of ${countryDisplayName(asset.country)}. Premium unisex t-shirt, printed fresh when you order.`}
             </p>
 
             {/* Add to cart — only when the product is live in Gelato */}
@@ -118,6 +114,8 @@ export default async function ProductPage({ params }: Props) {
                 Coming Soon
               </button>
             )}
+
+            <SizeChart />
 
             <div className="border-t pt-6 mt-6 space-y-3" style={{ borderColor: 'var(--color-border)' }}>
               {[
@@ -153,7 +151,7 @@ export default async function ProductPage({ params }: Props) {
           <section>
             <h2 className="font-display text-xl font-semibold mb-6"
               style={{ color: 'var(--color-text-heading)' }}>
-              More {asset.country} designs
+              More {countryDisplayName(asset.country)} designs
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {relatedCountry.map(a => <ProductCard key={a.id} asset={a} />)}
