@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import { brand } from '@/config/brand'
 import Header from '@/components/layout/Header'
@@ -33,6 +34,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* Google Analytics 4 — G-06N6MZW8Z1 */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-06N6MZW8Z1"
+        strategy="afterInteractive"
+      />
+      <Script id="ga4-init" strategy="afterInteractive">{`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-06N6MZW8Z1');
+      `}</Script>
       <body>
         <Header />
         <main>{children}</main>

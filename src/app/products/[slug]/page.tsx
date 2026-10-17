@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { getAssetBySlug, getRelatedByGod, getRelatedByCountry } from '@/lib/designs'
 import ProductCard from '@/components/product/ProductCard'
 import AddToCartButton from '@/components/cart/AddToCartButton'
+import ShareButton from '@/components/product/ShareButton'
 import { brand } from '@/config/brand'
 
 export const revalidate = 3600
@@ -36,6 +37,7 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params
   const asset = await getAssetBySlug(slug)
   if (!asset) notFound()
+  const productUrl = `https://${brand.domain}/products/${slug}`
 
   const title = formatTitle(asset)
   const primaryImage = asset.mockup_female_url ?? asset.mockup_male_url ?? asset.file_url
@@ -83,9 +85,16 @@ export default async function ProductPage({ params }: Props) {
               {displayTitle}
             </h1>
 
-            <p className="text-2xl font-semibold mb-6" style={{ color: 'var(--color-text-dark)' }}>
-              From $29.99
-            </p>
+            <div className="flex items-center justify-between mb-6">
+              <p className="text-2xl font-semibold" style={{ color: 'var(--color-text-dark)' }}>
+                From $29.99
+              </p>
+              <ShareButton
+                title={`${displayTitle} — Hindu Deity T-Shirt | HinduTees`}
+                url={productUrl}
+                imageUrl={primaryImage}
+              />
+            </div>
 
             <p className="text-sm leading-relaxed mb-8" style={{ color: 'var(--color-text-muted)' }}>
               {asset.seo_description ?? `A celebration of dual identity — ${asset.god} rendered in the colors and symbolism of ${asset.country}. Premium unisex t-shirt, printed fresh when you order.`}
