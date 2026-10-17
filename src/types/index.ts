@@ -13,6 +13,7 @@ export type Asset = {
   file_url: string | null
   mockup_female_url: string | null
   mockup_male_url: string | null
+  mockup_reviewed_at: string | null
   seo_title: string | null
   seo_description: string | null
   created_at: string
