@@ -16,7 +16,7 @@ export default async function BlogPage() {
   return (
     <>
       {/* Page header */}
-      <section className="pt-28 pb-14 text-center px-6">
+      <section className="pt-32 pb-14 text-center px-6">
         <p className="text-xs font-medium tracking-[0.25em] mb-4 uppercase"
           style={{ color: 'var(--color-primary)', fontFamily: 'var(--font-display)' }}>
           From the community

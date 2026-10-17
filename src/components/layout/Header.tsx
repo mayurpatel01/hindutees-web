@@ -20,16 +20,16 @@ export default function Header() {
           backdropFilter: 'blur(12px)',
           borderColor: 'var(--color-border)',
         }}>
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center" aria-label={brand.name}>
             <Image
               src="/logo.png"
               alt={brand.name}
-              width={120}
-              height={68}
+              width={180}
+              height={102}
               priority
-              className="h-14 w-auto"
+              className="h-20 w-auto"
               style={{ filter: 'var(--logo-filter)' }}
             />
           </Link>

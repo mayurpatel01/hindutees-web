@@ -40,7 +40,7 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       {/* Article header */}
-      <section className="pt-28 pb-10 px-6 text-center max-w-3xl mx-auto">
+      <section className="pt-32 pb-10 px-6 text-center max-w-3xl mx-auto">
         <Link href="/blog" className="inline-flex items-center gap-2 text-xs mb-8 hover:opacity-70 transition-opacity"
           style={{ color: 'var(--color-text-muted)' }}>
           ← Back to Blog

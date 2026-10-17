@@ -17,7 +17,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Decorative gold radial — very subtle on ivory */}
         <div
           className="marigold-glow absolute rounded-full pointer-events-none"
