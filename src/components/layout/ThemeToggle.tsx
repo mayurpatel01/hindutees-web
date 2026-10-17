@@ -32,21 +32,24 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
+  // Read stored preference once on mount
   useEffect(() => {
     setMounted(true);
     try {
       const stored = localStorage.getItem("ht-theme") as Theme | null;
-      const initial = stored ?? "dark";
-      setTheme(initial);
-      document.documentElement.setAttribute("data-theme", initial);
+      if (stored === "light" || stored === "dark") setTheme(stored);
     } catch {}
   }, []);
 
+  // Sync data-theme AFTER React reconciles the DOM — this prevents React
+  // from stripping the attribute when it re-renders the <html> element.
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    try { localStorage.setItem("ht-theme", theme); } catch {}
+  }, [theme]);
+
   function toggle() {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    try { localStorage.setItem("ht-theme", next); } catch {}
+    setTheme(prev => (prev === "dark" ? "light" : "dark"));
   }
 
   // Avoid hydration mismatch — render placeholder until mounted
