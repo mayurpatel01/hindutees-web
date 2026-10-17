@@ -99,27 +99,57 @@ const STATIC_POSTS: BlogPost[] = [
   },
   {
     slug: 'two-flags-one-identity',
-    title: 'Two Flags, One Identity: What Your Combination Says',
+    title: 'Two Flags, One Identity: Why We Refuse to Choose',
     excerpt:
-      "India–USA. Guyana–Canada. Fiji–Australia. Each diaspora combination carries a distinct migration story. Here's what yours might be.",
-    coverImage: 'https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=1200&q=80&fit=crop',
+      "Most countries ask you to pick a side. Your heritage or your home. Hindu diaspora communities have been refusing that choice for generations — and wearing both flags is how we say so.",
+    coverImage: 'https://images.unsplash.com/photo-1569388037243-dfa034be5ee9?w=1200&q=80&fit=crop',
     publishedAt: '2026-10-14',
-    readingMinutes: 4,
+    readingMinutes: 6,
     category: 'Identity',
     body: `
-<p>Every HinduTee design tells two stories simultaneously. The deity tells the spiritual story. The flag combination tells the migration story. These are not the same story, but they belong together.</p>
+<p>There's a question every second-generation Hindu immigrant has been asked, usually at an airport, sometimes at a family reunion, occasionally by a well-meaning coworker: <em>So where are you really from?</em></p>
 
-<h2>The Indian–American combination</h2>
-<p>The most common combination in our collection. Roughly four million people of Indian descent live in the United States. The India–USA shirt says: my family came from there, I was built here, and I hold both.</p>
+<p>The question assumes there's one true answer. A single flag. A single origin story. It assumes that identity is a zero-sum game — that loving one country means diminishing another.</p>
 
-<h2>The Guyanese combination</h2>
-<p>The Guyanese Hindu community is descended from indentured labourers brought to British Guiana from the 1830s onward. They were already a diaspora within a diaspora before they migrated again to New York, Toronto, or London. Wearing Ganesh with both flags acknowledges the full arc of that journey.</p>
+<p>The Hindu diaspora has been quietly disproving this for over two centuries.</p>
 
-<h2>The Fijian combination</h2>
-<p>Fijian Hindus have one of the most layered diaspora stories of all — from India to Fiji to Australia or New Zealand after the coups of 1987 and 2000. A Fiji–Australia shirt carries all of that history in two rectangles of color.</p>
+<h2>One shirt. Two flags. No apology.</h2>
 
-<h2>Wear the whole story</h2>
-<p>The flag combination you choose is a small act of historical precision — a way of saying exactly where your family came from and where they built their lives.</p>
+<p>Every HinduTee design carries two national flags alongside a Hindu deity. Not one flag. Two. That's not a compromise — it's the whole point.</p>
+
+<p>The Indian flag represents where your family's faith was forged, where your grandparents lit diyas, where the temples are ancient and the festivals fill entire cities. The second flag — USA, Canada, UK, Australia, Trinidad, Guyana, Fiji — represents where your family chose to build a life. Where you were born, or raised, or where you planted your own roots.</p>
+
+<p>These are not competing loyalties. They are two chapters of the same story.</p>
+
+<h2>The diaspora that never chose one home</h2>
+
+<p>Indo-Caribbean Hindus — the descendants of the 500,000 indentured labourers brought to Trinidad, Guyana, Suriname, Jamaica, and Fiji between 1838 and 1917 — have been navigating double identity longer than most. They weren't immigrants in the traditional sense. They were transported. Their connection to India was severed by colonial design.</p>
+
+<p>And yet they kept the faith. They kept the deities. They kept the rituals. In villages without a single Hindi speaker remaining, they still recited Sanskrit prayers passed down through generations.</p>
+
+<p>When a Guyanese Hindu family migrated again to New York in the 1970s or 80s, their identity became three-layered: Indian roots, Guyanese childhood, American present. A shirt with the Indian and Guyanese flags isn't a simplification of that story. It's an acknowledgment of it.</p>
+
+<h2>What your flag combination says</h2>
+
+<p><strong>India + USA:</strong> The most common combination in our collection. Four million people of Indian descent live in the United States. This shirt says: <em>we came for opportunity, we stayed for community, and we brought our gods with us.</em></p>
+
+<p><strong>India + Canada:</strong> The Indo-Canadian community — particularly in the Greater Toronto Area and Metro Vancouver — has built one of the most visible Hindu diasporas outside South Asia. Wearing this combination is a statement of roots and of belonging, simultaneously.</p>
+
+<p><strong>India + Trinidad & Tobago:</strong> Trinidad's Hindu community is descended from the original indentured labour wave. They have kept festivals alive that have faded in India itself. Diwali Nagar in Chaguanas is the largest Diwali celebration outside of India. This flag combination honors 175 years of unbroken faith.</p>
+
+<p><strong>India + Fiji:</strong> Fijian Hindus carried their traditions across the Pacific — and then many of them carried them again to Australia and New Zealand after the coups of 1987 and 2000. If you wear a Fiji–Australia shirt, you are acknowledging a migration story that happened twice.</p>
+
+<p><strong>India + UK:</strong> The British Indian community built the foundation for South Asian culture in the West. Leicester's Golden Mile, Wembley, Southall — these are not immigrant enclaves. They are permanent cultural institutions. Wearing this combination acknowledges that permanence.</p>
+
+<h2>The real reason we wear both</h2>
+
+<p>There's a version of diaspora life that is always slightly apologetic. Always slightly deferential. Always explaining itself to someone — to the country you came from, or to the country you live in, or to family members who think you've strayed too far in either direction.</p>
+
+<p>Wearing two flags side by side is a refusal of that apology.</p>
+
+<p>It says: I know exactly where I come from. I know exactly where I am. And I don't owe either place an explanation for how much I love the other.</p>
+
+<p>The deity you choose tells the world what you believe. The flags tell the world who you are. Together, they tell the full story — and the full story is the only one worth wearing.</p>
     `.trim(),
   },
 ]
