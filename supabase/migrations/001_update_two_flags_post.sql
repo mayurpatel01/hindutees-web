@@ -49,8 +49,7 @@ SET
 
 <p>It says: I know exactly where I come from. I know exactly where I am. And I don''t owe either place an explanation for how much I love the other.</p>
 
-<p>The deity you choose tells the world what you believe. The flags tell the world who you are. Together, they tell the full story — and the full story is the only one worth wearing.</p>',
-  updated_at = now()
+<p>The deity you choose tells the world what you believe. The flags tell the world who you are. Together, they tell the full story — and the full story is the only one worth wearing.</p>'
 WHERE slug = 'two-flags-one-identity';
 
 -- If it doesn't exist yet, insert it:
