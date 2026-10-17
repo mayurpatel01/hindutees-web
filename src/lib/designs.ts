@@ -7,6 +7,7 @@ export async function getFeaturedDesigns(limit = 8): Promise<Asset[]> {
     .from('assets')
     .select('*')
     .eq('gelato_status', 'active')
+    .not('mockup_reviewed_at', 'is', null)
     .order('created_at', { ascending: false })
     .limit(limit)
 
@@ -21,6 +22,7 @@ export async function getAssetBySlug(slug: string): Promise<Asset | null> {
     .select('*')
     .eq('slug', slug)
     .eq('gelato_status', 'active')
+    .not('mockup_reviewed_at', 'is', null)
     .single()
 
   if (error) { console.error('getAssetBySlug:', error); return null }
@@ -34,6 +36,7 @@ export async function getRelatedByGod(god: string, excludeId: string, limit = 4)
     .select('*')
     .eq('god', god)
     .eq('gelato_status', 'active')
+    .not('mockup_reviewed_at', 'is', null)
     .neq('id', excludeId)
     .limit(limit)
 
@@ -48,6 +51,7 @@ export async function getRelatedByCountry(country: string, excludeId: string, li
     .select('*')
     .eq('country', country)
     .eq('gelato_status', 'active')
+    .not('mockup_reviewed_at', 'is', null)
     .neq('id', excludeId)
     .limit(limit)
 
@@ -61,6 +65,7 @@ export async function getAllActiveAssets(): Promise<Asset[]> {
     .from('assets')
     .select('*')
     .eq('gelato_status', 'active')
+    .not('mockup_reviewed_at', 'is', null)
     .order('god', { ascending: true })
 
   if (error) { console.error('getAllActiveAssets:', error); return [] }

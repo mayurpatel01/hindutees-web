@@ -42,6 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       .from('assets')
       .select('slug, updated_at')
       .eq('gelato_status', 'active')
+      .not('mockup_reviewed_at', 'is', null)
       .not('slug', 'is', null)
       .order('design_number', { ascending: true })
 
