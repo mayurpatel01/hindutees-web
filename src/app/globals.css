@@ -139,6 +139,17 @@ body {
   }
 }
 
+/* Deity card + country pill hover — CSS-only so they work in Server Components */
+.deity-card:hover {
+  border-color: var(--color-primary) !important;
+  background-color: var(--color-surface-2) !important;
+}
+
+.country-pill:hover {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+
 /* Blog article body — scoped to .blog-body so it doesn't bleed into other pages */
 .blog-body p {
   margin-bottom: 1.5rem;

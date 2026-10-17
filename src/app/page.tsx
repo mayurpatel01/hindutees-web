@@ -133,18 +133,10 @@ export default async function HomePage() {
             <Link
               key={deity.value}
               href={`/shop?god=${deity.value}`}
-              className="group flex flex-col items-center gap-2 p-3 md:p-4 rounded-2xl border text-center transition-all duration-200 hover:shadow-md"
+              className="deity-card group flex flex-col items-center gap-2 p-3 md:p-4 rounded-2xl border text-center transition-all duration-200 hover:shadow-md"
               style={{
                 borderColor: 'var(--color-border)',
                 backgroundColor: 'var(--color-surface)',
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-primary)'
-                ;(e.currentTarget as HTMLElement).style.backgroundColor = 'var(--color-surface-2)'
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-border)'
-                ;(e.currentTarget as HTMLElement).style.backgroundColor = 'var(--color-surface)'
               }}
             >
               {/* Symbol circle */}
@@ -218,19 +210,11 @@ export default async function HomePage() {
                 <Link
                   key={c.value}
                   href={`/shop?country=${c.value}`}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 hover:shadow-sm"
+                  className="country-pill inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all duration-200 hover:shadow-sm"
                   style={{
                     borderColor: 'var(--color-border)',
                     color: 'var(--color-text-dark)',
                     backgroundColor: 'var(--color-surface)',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-primary)'
-                    ;(e.currentTarget as HTMLElement).style.color = 'var(--color-primary)'
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-border)'
-                    ;(e.currentTarget as HTMLElement).style.color = 'var(--color-text-dark)'
                   }}
                 >
                   <span>{c.flag}</span>
