@@ -7,12 +7,11 @@ export async function getFeaturedDesigns(limit = 8): Promise<Asset[]> {
     .from('assets')
     .select('*')
     .eq('gelato_status', 'active')
-    .not('mockup_reviewed_at', 'is', null)
     .order('created_at', { ascending: false })
-    .limit(limit)
+    .limit(limit * 4) // over-fetch to account for mockup filter
 
   if (error) { console.error('getFeaturedDesigns:', error); return [] }
-  return data ?? []
+  return (data ?? [] as Asset[]).filter((a: Asset) => a.mockup_reviewed_at != null).slice(0, limit)
 }
 
 export async function getAssetBySlug(slug: string): Promise<Asset | null> {
@@ -22,11 +21,11 @@ export async function getAssetBySlug(slug: string): Promise<Asset | null> {
     .select('*')
     .eq('slug', slug)
     .eq('gelato_status', 'active')
-    .not('mockup_reviewed_at', 'is', null)
     .single()
 
   if (error) { console.error('getAssetBySlug:', error); return null }
-  return data
+  const asset = data as Asset | null
+  return asset?.mockup_reviewed_at != null ? asset : null
 }
 
 export async function getRelatedByGod(god: string, excludeId: string, limit = 4): Promise<Asset[]> {
@@ -36,12 +35,11 @@ export async function getRelatedByGod(god: string, excludeId: string, limit = 4)
     .select('*')
     .eq('god', god)
     .eq('gelato_status', 'active')
-    .not('mockup_reviewed_at', 'is', null)
     .neq('id', excludeId)
-    .limit(limit)
+    .limit(limit * 4)
 
   if (error) { console.error('getRelatedByGod:', error); return [] }
-  return data ?? []
+  return (data ?? [] as Asset[]).filter((a: Asset) => a.mockup_reviewed_at != null).slice(0, limit)
 }
 
 export async function getRelatedByCountry(country: string, excludeId: string, limit = 4): Promise<Asset[]> {
@@ -51,12 +49,11 @@ export async function getRelatedByCountry(country: string, excludeId: string, li
     .select('*')
     .eq('country', country)
     .eq('gelato_status', 'active')
-    .not('mockup_reviewed_at', 'is', null)
     .neq('id', excludeId)
-    .limit(limit)
+    .limit(limit * 4)
 
   if (error) { console.error('getRelatedByCountry:', error); return [] }
-  return data ?? []
+  return (data ?? [] as Asset[]).filter((a: Asset) => a.mockup_reviewed_at != null).slice(0, limit)
 }
 
 export async function getAllActiveAssets(): Promise<Asset[]> {
@@ -65,9 +62,8 @@ export async function getAllActiveAssets(): Promise<Asset[]> {
     .from('assets')
     .select('*')
     .eq('gelato_status', 'active')
-    .not('mockup_reviewed_at', 'is', null)
     .order('god', { ascending: true })
 
   if (error) { console.error('getAllActiveAssets:', error); return [] }
-  return data ?? []
+  return (data ?? [] as Asset[]).filter((a: Asset) => a.mockup_reviewed_at != null)
 }

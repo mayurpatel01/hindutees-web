@@ -40,14 +40,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Product pages
     const { data: assets } = await supabase
       .from('assets')
-      .select('slug, updated_at')
+      .select('slug, updated_at, mockup_reviewed_at')
       .eq('gelato_status', 'active')
-      .not('mockup_reviewed_at', 'is', null)
       .not('slug', 'is', null)
       .order('design_number', { ascending: true })
 
     const productPages: MetadataRoute.Sitemap = (assets ?? [])
-      .filter(a => a.slug)
+      .filter(a => a.slug && a.mockup_reviewed_at != null)
       .map(a => ({
         url: `${BASE_URL}/products/${a.slug}`,
         lastModified: a.updated_at ? new Date(a.updated_at) : new Date(),
