@@ -33,7 +33,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      {/* Prevent flash of wrong theme — runs before paint */}
+      <script dangerouslySetInnerHTML={{ __html: `(function(){try{var t=localStorage.getItem('ht-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();` }} />
       {/* Google Analytics 4 — G-06N6MZW8Z1 */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-06N6MZW8Z1"

@@ -2,22 +2,63 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand palette — Deep Forest Green / Antique Gold / Warm Cream */
-  --color-primary: #D4A843;        /* Antique Gold — CTA buttons, badges, accents (bright on dark) */
-  --color-primary-dark: #E8C05A;   /* Gold hover — lighter for dark bg hover */
-  --color-secondary: #E07B30;      /* Muted Saffron — secondary accents */
-  --color-emerald: #52B07C;        /* Sage Emerald — links, highlights on dark bg */
-  --color-canvas: #0C1F15;         /* Deep Forest Green — page background */
-  --color-surface: #132B1C;        /* Slightly lighter green — cards, sections */
-  --color-surface-2: #1C3826;      /* Hover states, dividers */
-  --color-text-dark: #EDE8DB;      /* Warm Cream — primary body text (high contrast on green) */
-  --color-text-heading: #D4A843;   /* Gold — headings, brand name */
-  --color-text-muted: #8BAE94;     /* Sage — secondary copy */
-  --color-text-light: #EDE8DB;     /* Cream — text on gold/colored backgrounds */
-  --color-border: rgba(237, 232, 219, 0.10);  /* Subtle cream border */
+  /* Brand palette — Dark theme (default): Deep Forest Green / Antique Gold / Warm Cream */
+  --color-primary: #D4A843;
+  --color-primary-dark: #E8C05A;
+  --color-secondary: #E07B30;
+  --color-emerald: #52B07C;
+  --color-canvas: #0C1F15;
+  --color-surface: #132B1C;
+  --color-surface-2: #1C3826;
+  --color-text-dark: #EDE8DB;
+  --color-text-heading: #D4A843;
+  --color-text-muted: #8BAE94;
+  --color-text-light: #EDE8DB;
+  --color-border: rgba(237, 232, 219, 0.10);
   --color-border-strong: rgba(237, 232, 219, 0.22);
+  --color-header-bg: rgba(12, 31, 21, 0.92);
   --font-display: 'Cinzel', serif;
   --font-body: 'Inter', sans-serif;
+  color-scheme: dark;
+}
+
+/* Light theme — warm ivory / antique gold */
+:root[data-theme="light"] {
+  --color-canvas: #F7F3E9;
+  --color-surface: #EFEAD8;
+  --color-surface-2: #E8E0C8;
+  --color-text-dark: #1C2B20;
+  --color-text-heading: #8B6914;
+  --color-text-muted: #5C6B52;
+  --color-text-light: #F7F3E9;
+  --color-primary: #B8860B;
+  --color-primary-dark: #8B6914;
+  --color-secondary: #C4621A;
+  --color-emerald: #2E7D52;
+  --color-border: rgba(28, 43, 32, 0.12);
+  --color-border-strong: rgba(28, 43, 32, 0.25);
+  --color-header-bg: rgba(247, 243, 233, 0.92);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --color-canvas: #F7F3E9;
+    --color-surface: #EFEAD8;
+    --color-surface-2: #E8E0C8;
+    --color-text-dark: #1C2B20;
+    --color-text-heading: #8B6914;
+    --color-text-muted: #5C6B52;
+    --color-text-light: #F7F3E9;
+    --color-primary: #B8860B;
+    --color-primary-dark: #8B6914;
+    --color-secondary: #C4621A;
+    --color-emerald: #2E7D52;
+    --color-border: rgba(28, 43, 32, 0.12);
+    --color-border-strong: rgba(28, 43, 32, 0.25);
+    --color-header-bg: rgba(247, 243, 233, 0.92);
+    color-scheme: light;
+  }
 }
 
 html {

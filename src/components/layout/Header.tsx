@@ -5,6 +5,7 @@ import { brand } from '@/config/brand'
 import { useState } from 'react'
 import { useCart } from '@/lib/cart'
 import CartDrawer from '@/components/cart/CartDrawer'
+import ThemeToggle from '@/components/layout/ThemeToggle'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -15,7 +16,7 @@ export default function Header() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 border-b"
         style={{
-          backgroundColor: 'rgba(247, 243, 233, 0.92)',
+          backgroundColor: 'var(--color-header-bg)',
           backdropFilter: 'blur(12px)',
           borderColor: 'var(--color-border)',
         }}>
@@ -57,6 +58,8 @@ export default function Header() {
               Shop Now
             </Link>
 
+            <ThemeToggle />
+
             {/* Cart icon */}
             <button
               onClick={() => setCartOpen(true)}
@@ -80,8 +83,9 @@ export default function Header() {
             </button>
           </nav>
 
-          {/* Mobile: cart + menu */}
+          {/* Mobile: theme toggle + cart + menu */}
           <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
             <button
               onClick={() => setCartOpen(true)}
               className="relative p-1"
