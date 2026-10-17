@@ -2,20 +2,20 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand palette — Warm Ivory / Emerald / Antique Gold */
-  --color-primary: #C69C46;        /* Antique Gold — CTA buttons, badges, accents */
-  --color-primary-dark: #A07C30;   /* Gold hover state */
-  --color-secondary: #D97932;      /* Muted Saffron — secondary accents */
-  --color-emerald: #145C43;        /* Deep Emerald — brand text, nav logo */
-  --color-canvas: #F7F3E9;         /* Warm Ivory — page background */
-  --color-surface: #EDE8DB;        /* Slightly deeper ivory — cards, sections */
-  --color-surface-2: #E3DDD0;      /* Deeper still — hover states, dividers */
-  --color-text-dark: #202B27;      /* Deep Charcoal — primary body text */
-  --color-text-heading: #145C43;   /* Deep Emerald — headings, brand name */
-  --color-text-muted: #6B7B74;     /* Muted green-grey — secondary copy */
-  --color-text-light: #F7F3E9;     /* Ivory — text on colored/dark backgrounds */
-  --color-border: rgba(32, 43, 39, 0.12);  /* Subtle charcoal border */
-  --color-border-strong: rgba(32, 43, 39, 0.25);
+  /* Brand palette — Deep Forest Green / Antique Gold / Warm Cream */
+  --color-primary: #D4A843;        /* Antique Gold — CTA buttons, badges, accents (bright on dark) */
+  --color-primary-dark: #E8C05A;   /* Gold hover — lighter for dark bg hover */
+  --color-secondary: #E07B30;      /* Muted Saffron — secondary accents */
+  --color-emerald: #52B07C;        /* Sage Emerald — links, highlights on dark bg */
+  --color-canvas: #0C1F15;         /* Deep Forest Green — page background */
+  --color-surface: #132B1C;        /* Slightly lighter green — cards, sections */
+  --color-surface-2: #1C3826;      /* Hover states, dividers */
+  --color-text-dark: #EDE8DB;      /* Warm Cream — primary body text (high contrast on green) */
+  --color-text-heading: #D4A843;   /* Gold — headings, brand name */
+  --color-text-muted: #8BAE94;     /* Sage — secondary copy */
+  --color-text-light: #EDE8DB;     /* Cream — text on gold/colored backgrounds */
+  --color-border: rgba(237, 232, 219, 0.10);  /* Subtle cream border */
+  --color-border-strong: rgba(237, 232, 219, 0.22);
   --font-display: 'Cinzel', serif;
   --font-body: 'Inter', sans-serif;
 }
