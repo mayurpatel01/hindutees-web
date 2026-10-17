@@ -44,11 +44,13 @@ export async function getProductVariants(gelatoProductId: string): Promise<Gelat
 export function findVariantForSize(variants: GelatoVariant[], size: string): string | null {
   const sizeUpper = size.toUpperCase()
   const sizeMap: Record<string, string[]> = {
+    'XS':  ['XS', 'XSMALL', 'X-SMALL', 'EXTRA SMALL'],
     'S':   ['S', 'SMALL'],
     'M':   ['M', 'MEDIUM'],
     'L':   ['L', 'LARGE'],
     'XL':  ['XL', 'X-LARGE', 'XLARGE', 'EXTRA LARGE'],
     '2XL': ['2XL', 'XXL', '2X-LARGE', 'XX-LARGE'],
+    '3XL': ['3XL', 'XXXL', '3X-LARGE', 'XXX-LARGE'],
   }
   const candidates = sizeMap[sizeUpper] ?? [sizeUpper]
 

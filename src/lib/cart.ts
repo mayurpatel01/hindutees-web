@@ -2,7 +2,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-export const SIZES = ['S', 'M', 'L', 'XL', '2XL'] as const
+export const SIZES = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'] as const
 export type Size = typeof SIZES[number]
 
 export type CartItem = {
